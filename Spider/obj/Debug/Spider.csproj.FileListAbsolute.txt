@@ -1,0 +1,9 @@
+D:\Desktop\.net practice modules\Spider\Spider\bin\Debug\Spider.exe.config
+D:\Desktop\.net practice modules\Spider\Spider\bin\Debug\Spider.exe
+D:\Desktop\.net practice modules\Spider\Spider\bin\Debug\Spider.pdb
+D:\Desktop\.net practice modules\Spider\Spider\obj\Debug\Spider.csprojResolveAssemblyReference.cache
+D:\Desktop\.net practice modules\Spider\Spider\obj\Debug\Spider.Form1.resources
+D:\Desktop\.net practice modules\Spider\Spider\obj\Debug\Spider.Properties.Resources.resources
+D:\Desktop\.net practice modules\Spider\Spider\obj\Debug\Spider.csproj.GenerateResource.Cache
+D:\Desktop\.net practice modules\Spider\Spider\obj\Debug\Spider.exe
+D:\Desktop\.net practice modules\Spider\Spider\obj\Debug\Spider.pdb
