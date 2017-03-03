@@ -55,7 +55,14 @@ namespace Spider
         private void closeButton_Click(object sender, EventArgs e)
         {
             var visioApp = new visio.Application();
-            visioApp.Visible = true;
+            var doc = visioApp.Documents.Add("");
+            var page = visioApp.ActivePage;
+            //var shape = page.DrawRectangle(1, 12, 2, 2);
+            //var shape2 = page.DrawRectangle(5, 5, 5, 5);
+            //var shape3 = page.DrawLine(1, 2, 5, 9);
+            var shape5 = page.DrawCircularArc(4, 4,2, 1, 6.28);
+            shape5.Text = "Measure";
+            
             //var wordpp = new word.Application();
             //wordpp.Visible = true;
             //wordpp.Windows.Add();
