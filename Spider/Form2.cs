@@ -37,9 +37,18 @@ namespace Spider
             {
                 int i = 1;
                 string[] armValues = arm.Split(',');
-                Console.WriteLine("Length of arm"+"is"+armValues.Length);
+                Console.WriteLine("Length of arm" + "is" + armValues.Length);
                 i++;
             }
+            DrawArms(arms);
+        }
+        public static void DrawArms(List<string> arms)
+        {
+            var visioApp = new visio.Application();
+            var doc = visioApp.Documents.Add("");
+            var page = visioApp.ActivePage;
+            var shape6 = page.DrawOval(3.5, 6, 4.5, 5);
+            shape6.Text = "Measure";
         }
     }
 }
