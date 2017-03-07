@@ -59,10 +59,19 @@ namespace Spider
             var page = visioApp.ActivePage;
             //var shape = page.DrawRectangle(1, 12, 2, 2);
             //var shape2 = page.DrawRectangle(5, 5, 5, 5);
-            //var shape3 = page.DrawLine(1, 2, 5, 9);
-            var shape5 = page.DrawCircularArc(4, 4,2, 1, 6.28);
-            shape5.Text = "Measure";
-            
+            var line1 = page.DrawLine(4.125,5.5,7,5.5);
+            var line2 = page.DrawLine(4, 5.5,6.25,3);
+            var line3 = page.DrawLine(4, 5.5,4,2.5);
+            var line4 = page.DrawLine(4, 5.5,1.5,3);
+            var line5 = page.DrawLine(4, 5.5,1,5.5);
+            var line6 = page.DrawLine(4, 5.5,1.5,8);
+            var line7 = page.DrawLine(4, 5.5,6.5,8);
+            var line8 = page.DrawLine(4, 5.5, 4, 8);
+            //var shape5 = page.DrawCircularArc(4, 4,2,6.284,14);
+            //shape5.Text = "Measure";
+            var shape6 = page.DrawOval(3.5, 6, 4.5, 5);
+            shape6.Text = "Measure";
+            var shape7 = page.DrawOval(5.82, 5.62, 4.5, 5);
             //var wordpp = new word.Application();
             //wordpp.Visible = true;
             //wordpp.Windows.Add();
