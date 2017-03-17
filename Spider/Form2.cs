@@ -96,7 +96,10 @@ namespace Spider
                 for (int j = 0; j < pointsBetween.Count;j++ )
                 {
                    //draw the spots
-                    var cicleArc = page.DrawCircularArc(pointsBetween[j].x, pointsBetween[j].y, .15, 6.284, 14);
+                    double spotRadius = .15;
+                    //var cicleArc = page.DrawCircularArc(pointsBetween[j].x, pointsBetween[j].y, .15, 0, 2*Math.PI);
+                    var spotDrawing = page.DrawOval(pointsBetween[j].x - spotRadius, pointsBetween[j].y + spotRadius, pointsBetween[j].x + spotRadius, pointsBetween[j].y - spotRadius);
+                    spotDrawing.Text = spots[j].spotText;
                 }
                 theta += thetaIncrement;
 
@@ -108,15 +111,29 @@ namespace Spider
         {
             List<Coordinate> pointsBetween = new List<Coordinate>();
             //y = mx+c
-            double m = y2 - y1 / x2 - x1;
-            double b = y1 - m * x1;
-            double delta = x2 - x1 / spotCount;
-            for (int i = 1; i <= spotCount;i++ )
+            if (x1 != x2)
             {
-                Coordinate point = new Coordinate();   
-                point.x = x1+(i+delta);
-                point.y = m * (point.x) + b;
-                pointsBetween.Add(point);
+                double m = (y2 - y1) / (x2 - x1);
+                double b = y1 - m * x1;
+                double deltaX = (x2 - x1) / spotCount;
+                for (int i = 1; i <= spotCount; i++)
+                {
+                    Coordinate point = new Coordinate();
+                    point.x = x1 + (deltaX * i);
+                    point.y = m * (point.x) + b;
+                    pointsBetween.Add(point);
+                }
+            }
+            else
+            {
+                double deltaY = (y2 - y1) / spotCount;
+                for (int i = 1; i <= spotCount; i++)
+                {
+                    Coordinate point = new Coordinate();
+                    point.x = x1;
+                    point.y = y1 + (deltaY * i);
+                    pointsBetween.Add(point);
+                }
             }
             return pointsBetween; 
         }
