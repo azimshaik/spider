@@ -74,6 +74,7 @@ namespace Spider
             Coordinate origin = new Coordinate((topLeft.x + bottomRight.x) / 2, (topLeft.y + bottomRight.y) / 2);
             double radius = Math.Abs(topLeft.x - bottomRight.x) / 2;
             List<Limb> limbs = spidey.limbs;
+            
             double thetaIncrement = 2*Math.PI / limbs.Count;
             double theta = 0;
             for (int i = 0; i < limbs.Count; i++)
@@ -82,7 +83,7 @@ namespace Spider
                 double yStartIncrement = radius * Math.Sin(theta);
 
                 //HARDCODED
-                int limbLength = 5;
+                int limbLength = 6;
                 double xEndIncrement = limbLength * Math.Cos(theta);
                 double yEndIncrement = limbLength * Math.Sin(theta);
 
@@ -90,11 +91,34 @@ namespace Spider
                 Coordinate limbEnd = new Coordinate(limbStart.x + xEndIncrement, limbStart.y + yEndIncrement);
                 
                 var limb = page.DrawLine(limbStart.x,limbStart.y,limbEnd.x, limbEnd.y);
+                List<Spot> spots = limbs[i].spots;
+                List<Coordinate> pointsBetween = getPointsBetween(limbStart.x, limbStart.y, limbEnd.x, limbEnd.y,spots.Count);
+                for (int j = 0; j < pointsBetween.Count;j++ )
+                {
+                   //draw the spots
+                    var cicleArc = page.DrawCircularArc(pointsBetween[j].x, pointsBetween[j].y, .15, 6.284, 14);
+                }
                 theta += thetaIncrement;
 
             }
 
             headCircle.Text = spidey.head.headText;
+        }
+        public List<Coordinate> getPointsBetween(double x1, double y1, double x2, double y2, int spotCount)
+        {
+            List<Coordinate> pointsBetween = new List<Coordinate>();
+            //y = mx+c
+            double m = y2 - y1 / x2 - x1;
+            double b = y1 - m * x1;
+            double delta = x2 - x1 / spotCount;
+            for (int i = 1; i <= spotCount;i++ )
+            {
+                Coordinate point = new Coordinate();   
+                point.x = x1+(i+delta);
+                point.y = m * (point.x) + b;
+                pointsBetween.Add(point);
+            }
+            return pointsBetween; 
         }
     
     }
@@ -134,6 +158,10 @@ namespace Spider
             this.x = x;
             this.y = y;
         }
+        public Coordinate()
+        {
+            
+        }
 
     }
 }
@@ -144,17 +172,6 @@ namespace Spider
 //4 arms --> 12---9---6---3
 //5 arms --> 10---7---5---2---12
 //6 arms --> 10---12---2---4---6---8
-/*
-var visioApp = new visio.Application();
-            var doc = visioApp.Documents.Add("");
-            var page = visioApp.ActivePage;
-            var shape6 = page.DrawOval(3.5, 6, 4.5, 5);// Center (4, 5.5)
-            shape6.Text = "Measure";
-            var line1 = page.DrawLine(4, 5.5, 7, 5.5);
-    if (!string.IsNullOrWhiteSpace(arm2))
-            {
-                arms.Add(arm2);
-            }
- 
- //string[] arm1Values = arm1.Split(',');
- */
+
+//var cicleArc = page.DrawCircularArc((limbStart.x + limbEnd.x) / 2, (limbStart.y + limbEnd.y) / 2, .15, 6.284, 14);
+                  //  var cicleArc2 = page.DrawCircularArc(limbEnd.x, limbEnd.y, .15, 6.284, 14);
